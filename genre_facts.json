@@ -1,0 +1,122 @@
+{
+  "Blues": [
+    {"icon": "🎸", "desc": "Classic, soulful and emotional music with roots in African-American history.", "fact": "The blues influenced the birth of rock and roll.", "tip": "Let the rhythm guide your mood."},
+    {"icon": "🎸", "desc": "Blues often uses a 12-bar chord progression.", "fact": "B.B. King is known as the King of Blues.", "tip": "Listen for expressive guitar solos."},
+    {"icon": "🎸", "desc": "Lyrics often express hardship and hope.", "fact": "The harmonica is a staple blues instrument.", "tip": "Notice the call-and-response patterns."},
+    {"icon": "🎸", "desc": "Blues scales add a unique flavor to melodies.", "fact": "Delta blues came from the Mississippi Delta.", "tip": "Try improvising with a blues scale."},
+    {"icon": "🎸", "desc": "Chicago blues added electric guitar to the mix.", "fact": "Muddy Waters helped popularize electric blues.", "tip": "Compare acoustic and electric blues styles."},
+    {"icon": "🎸", "desc": "Blues influenced jazz and R&B.", "fact": "The term 'blue notes' refers to expressive pitch bends.", "tip": "Pay attention to vocal inflections."},
+    {"icon": "🎸", "desc": "Blues is often performed in small clubs and bars.", "fact": "Robert Johnson is a legendary early bluesman.", "tip": "Check out live blues performances."},
+    {"icon": "🎸", "desc": "Improvisation is central to blues music.", "fact": "Blues festivals are held worldwide.", "tip": "Jam with friends on a blues progression."},
+    {"icon": "🎸", "desc": "Blues lyrics often use metaphors and storytelling.", "fact": "Women like Ma Rainey were blues pioneers.", "tip": "Listen for stories in the lyrics."},
+    {"icon": "🎸", "desc": "Blues has a slow, swinging groove.", "fact": "Blues dancing is a social partner dance.", "tip": "Try moving to the groove!"}
+  ],
+  "Classical": [
+    {"icon": "🎻", "desc": "Timeless orchestral music with rich harmonies and intricate melodies.", "fact": "Classical music can boost concentration and creativity.", "tip": "Try listening while studying!"},
+    {"icon": "🎻", "desc": "Features composers like Mozart and Beethoven.", "fact": "The piano is a central classical instrument.", "tip": "Notice the dynamics in symphonies."},
+    {"icon": "🎻", "desc": "Classical pieces are often divided into movements.", "fact": "The violin is the star of many concertos.", "tip": "Follow the lead instrument in a concerto."},
+    {"icon": "🎻", "desc": "Classical music includes many eras: Baroque, Romantic, Modern.", "fact": "Opera combines music and drama.", "tip": "Listen for recurring themes (motifs)."},
+    {"icon": "🎻", "desc": "Choral music features large vocal ensembles.", "fact": "Bach is a master of counterpoint.", "tip": "Try singing along with a choir recording."},
+    {"icon": "🎻", "desc": "Classical music is played by orchestras worldwide.", "fact": "Symphonies can last over an hour.", "tip": "Attend a live orchestral concert."},
+    {"icon": "🎻", "desc": "String quartets are a popular chamber music form.", "fact": "Haydn is called the father of the string quartet.", "tip": "Notice the interplay between instruments."},
+    {"icon": "🎻", "desc": "Classical music is used in many films.", "fact": "Tchaikovsky composed famous ballet music.", "tip": "Watch a ballet performance for the music."},
+    {"icon": "🎻", "desc": "Many classical pieces are centuries old.", "fact": "Handel's 'Messiah' is a holiday favorite.", "tip": "Listen for the Hallelujah chorus."},
+    {"icon": "🎻", "desc": "Classical music can be both relaxing and exciting.", "fact": "It is often used to teach music theory.", "tip": "Try identifying different instruments."}
+  ],
+  "Country": [
+    {"icon": "🤠", "desc": "Storytelling with a twang, evoking rural life and heartfelt tales.", "fact": "Country music often features the banjo and steel guitar.", "tip": "Perfect for a road trip."},
+    {"icon": "🤠", "desc": "Country lyrics tell personal stories.", "fact": "Nashville is the heart of country music.", "tip": "Listen for the fiddle and harmonica."},
+    {"icon": "🤠", "desc": "Country has roots in folk and blues.", "fact": "Johnny Cash is a country legend.", "tip": "Try singing along to a country ballad."},
+    {"icon": "🤠", "desc": "Modern country blends pop and rock.", "fact": "Country line dancing is popular at parties.", "tip": "Try learning a line dance!"},
+    {"icon": "🤠", "desc": "Country music celebrates love and heartbreak.", "fact": "Dolly Parton wrote 'Jolene' and 'I Will Always Love You'.", "tip": "Notice the storytelling in the lyrics."},
+    {"icon": "🤠", "desc": "Country artists often wear cowboy hats.", "fact": "The Grand Ole Opry is a famous country venue.", "tip": "Watch a live country performance."},
+    {"icon": "🤠", "desc": "Bluegrass is a fast-paced country style.", "fact": "Banjo picking is a bluegrass hallmark.", "tip": "Try picking out the banjo in a song."},
+    {"icon": "🤠", "desc": "Country duets are common.", "fact": "Willie Nelson is known for his unique voice.", "tip": "Listen for vocal harmonies."},
+    {"icon": "🤠", "desc": "Country music festivals are held worldwide.", "fact": "Taylor Swift started as a country artist.", "tip": "See how artists blend genres."},
+    {"icon": "🤠", "desc": "The steel guitar gives country its signature sound.", "fact": "Loretta Lynn is the 'Coal Miner's Daughter'.", "tip": "Listen for the slide guitar."}
+  ],
+  "Disco": [
+    {"icon": "🕺", "desc": "Danceable grooves, funky basslines, and shimmering synths.", "fact": "Disco became a global phenomenon in the 1970s.", "tip": "Get up and dance!"},
+    {"icon": "🕺", "desc": "Disco clubs featured light-up dance floors.", "fact": "Donna Summer is the Queen of Disco.", "tip": "Try dancing to a classic disco beat."},
+    {"icon": "🕺", "desc": "Disco uses syncopated rhythms.", "fact": "The Bee Gees wrote many disco hits.", "tip": "Notice the falsetto vocals."},
+    {"icon": "🕺", "desc": "Disco fashion includes glitter and bell-bottoms.", "fact": "Saturday Night Fever popularized disco worldwide.", "tip": "Watch the movie for iconic dance scenes."},
+    {"icon": "🕺", "desc": "Disco balls are a dance floor staple.", "fact": "Chic's 'Le Freak' is a disco anthem.", "tip": "Find the groove in the bassline."},
+    {"icon": "🕺", "desc": "Disco mixes funk, soul, and pop.", "fact": "Gloria Gaynor's 'I Will Survive' is a classic.", "tip": "Sing along to the chorus!"},
+    {"icon": "🕺", "desc": "Disco music is energetic and uplifting.", "fact": "KC and the Sunshine Band brought disco to the mainstream.", "tip": "Try clapping on beats 2 and 4."},
+    {"icon": "🕺", "desc": "Disco influenced modern dance music.", "fact": "Village People created the hit 'YMCA'.", "tip": "Do the YMCA dance!"},
+    {"icon": "🕺", "desc": "Disco often features orchestral instruments.", "fact": "Strings and horns add to the disco sound.", "tip": "Listen for lush arrangements."},
+    {"icon": "🕺", "desc": "Disco parties are still popular today.", "fact": "Disco Demolition Night marked the genre's backlash.", "tip": "Host your own disco night!"}
+  ],
+  "Hip-Hop": [
+    {"icon": "🎤", "desc": "Rhythmic beats, poetry, and streetwise storytelling.", "fact": "Hip-hop culture includes rap, DJing, breakdancing, and graffiti.", "tip": "Feel the beat and express yourself."},
+    {"icon": "🎤", "desc": "Hip-hop started in the Bronx, NYC.", "fact": "DJ Kool Herc is a hip-hop pioneer.", "tip": "Try writing your own rap verse."},
+    {"icon": "🎤", "desc": "Freestyle rapping is a key hip-hop skill.", "fact": "MC means Master of Ceremonies.", "tip": "Listen for clever wordplay."},
+    {"icon": "🎤", "desc": "Hip-hop often samples older songs.", "fact": "Sampling is a creative hip-hop technique.", "tip": "Identify samples in your favorite tracks."},
+    {"icon": "🎤", "desc": "Graffiti art is part of hip-hop culture.", "fact": "Breakdancing is called b-boying.", "tip": "Watch a breakdance battle online."},
+    {"icon": "🎤", "desc": "Hip-hop fashion is influential worldwide.", "fact": "Run-DMC popularized Adidas sneakers.", "tip": "Notice the style in music videos."},
+    {"icon": "🎤", "desc": "Rap battles are a hip-hop tradition.", "fact": "Eminem is known for his battle rap skills.", "tip": "Try a friendly rap battle with friends."},
+    {"icon": "🎤", "desc": "Hip-hop addresses social and political issues.", "fact": "Tupac and Biggie are legendary rappers.", "tip": "Listen for messages in the lyrics."},
+    {"icon": "🎤", "desc": "Hip-hop dance styles are energetic.", "fact": "Crumping and popping are hip-hop dances.", "tip": "Try learning a dance move!"},
+    {"icon": "🎤", "desc": "Modern hip-hop fuses many genres.", "fact": "Drake and Kendrick Lamar are chart-toppers.", "tip": "Explore new school and old school hip-hop."}
+  ],
+  "Jazz": [
+    {"icon": "🎷", "desc": "Improvisational, expressive, and smooth with rich harmonies.", "fact": "Jazz originated in New Orleans in the early 20th century.", "tip": "Great for relaxing evenings."},
+    {"icon": "🎷", "desc": "Jazz uses swing rhythms.", "fact": "Louis Armstrong is a jazz icon.", "tip": "Listen for trumpet solos."},
+    {"icon": "🎷", "desc": "Jazz improvisation is spontaneous.", "fact": "Miles Davis shaped modern jazz.", "tip": "Notice the solos in each piece."},
+    {"icon": "🎷", "desc": "Jazz standards are well-known tunes.", "fact": "Ella Fitzgerald was the Queen of Jazz.", "tip": "Try scatting along with the vocals."},
+    {"icon": "🎷", "desc": "Jazz can be fast or slow.", "fact": "Duke Ellington led a famous big band.", "tip": "Listen for big band arrangements."},
+    {"icon": "🎷", "desc": "Jazz combos are small groups.", "fact": "John Coltrane pushed jazz boundaries.", "tip": "Explore different jazz subgenres."},
+    {"icon": "🎷", "desc": "Jazz festivals are held worldwide.", "fact": "Montreux is a famous jazz festival.", "tip": "Watch a live jazz performance."},
+    {"icon": "🎷", "desc": "Jazz has roots in blues and ragtime.", "fact": "Improvisation is key to jazz.", "tip": "Try improvising a melody yourself."},
+    {"icon": "🎷", "desc": "Jazz is featured in many films.", "fact": "La La Land celebrates jazz music.", "tip": "Watch a jazz-themed movie."},
+    {"icon": "🎷", "desc": "Jazz piano uses complex chords.", "fact": "Thelonious Monk was a jazz pianist.", "tip": "Listen for unique piano harmonies."}
+  ],
+  "Metal": [
+    {"icon": "🤘", "desc": "Loud, energetic, and powerful with electric guitars and strong vocals.", "fact": "Metal has many subgenres, from thrash to symphonic.", "tip": "Turn up the volume!"},
+    {"icon": "🤘", "desc": "Heavy metal emerged in the late 1960s.", "fact": "Black Sabbath is a pioneering metal band.", "tip": "Listen for distorted guitar riffs."},
+    {"icon": "🤘", "desc": "Metal concerts feature energetic crowds.", "fact": "Headbanging is a metal tradition.", "tip": "Try headbanging to the beat!"},
+    {"icon": "🤘", "desc": "Metal vocals can be clean or growled.", "fact": "Iron Maiden is known for melodic metal.", "tip": "Notice the vocal style differences."},
+    {"icon": "🤘", "desc": "Metal drumming is fast and complex.", "fact": "Double bass pedals are common in metal.", "tip": "Pay attention to the drum patterns."},
+    {"icon": "🤘", "desc": "Metal fans are called 'metalheads'.", "fact": "Metallica is one of the best-selling bands.", "tip": "Explore classic and modern metal."},
+    {"icon": "🤘", "desc": "Guitar solos are a metal highlight.", "fact": "Eddie Van Halen was a guitar virtuoso.", "tip": "Listen for fast guitar runs."},
+    {"icon": "🤘", "desc": "Metal lyrics cover many themes.", "fact": "Symphonic metal uses orchestras.", "tip": "Hear the blend of metal and classical."},
+    {"icon": "🤘", "desc": "Metal fashion is bold and edgy.", "fact": "Leather jackets and spikes are common.", "tip": "Notice the fashion at concerts."},
+    {"icon": "🤘", "desc": "Metal festivals draw huge crowds.", "fact": "Wacken Open Air is a famous metal fest.", "tip": "Watch live festival footage."}
+  ],
+  "Pop": [
+    {"icon": "🎹", "desc": "Catchy melodies and universal appeal, always evolving with trends.", "fact": "Pop is short for 'popular music'.", "tip": "Sing along to your favorites."},
+    {"icon": "🎹", "desc": "Pop stars often set fashion trends.", "fact": "Michael Jackson is the King of Pop.", "tip": "Try learning a pop dance routine."},
+    {"icon": "🎹", "desc": "Pop songs are usually 3-4 minutes long.", "fact": "Synthesizers are common in pop music.", "tip": "Listen for catchy hooks."},
+    {"icon": "🎹", "desc": "Pop music dominates the charts.", "fact": "Taylor Swift blends pop and country.", "tip": "Notice how genres mix in pop."},
+    {"icon": "🎹", "desc": "Pop concerts feature elaborate shows.", "fact": "Beyoncé is known for her live performances.", "tip": "Watch a pop concert video."},
+    {"icon": "🎹", "desc": "Pop lyrics are often about love and life.", "fact": "Ariana Grande is a pop superstar.", "tip": "Sing along with the chorus."},
+    {"icon": "🎹", "desc": "Pop music videos are creative and bold.", "fact": "Lady Gaga is famous for her visuals.", "tip": "Check out the latest music videos."},
+    {"icon": "🎹", "desc": "Pop is a global phenomenon.", "fact": "K-pop is Korean popular music.", "tip": "Explore pop from different countries."},
+    {"icon": "🎹", "desc": "Pop is influenced by many genres.", "fact": "Ed Sheeran writes and performs pop hits.", "tip": "Listen for acoustic pop songs."},
+    {"icon": "🎹", "desc": "Pop is for everyone!", "fact": "Pop is the most streamed genre.", "tip": "Share your favorite pop song."}
+  ],
+  "Reggae": [
+    {"icon": "🌴", "desc": "Laid-back rhythms, offbeat accents, and positive vibes.", "fact": "Reggae originated in Jamaica in the late 1960s.", "tip": "Feel the island groove."},
+    {"icon": "🌴", "desc": "Reggae uses a one-drop drum beat.", "fact": "Bob Marley is the King of Reggae.", "tip": "Listen for the offbeat guitar strum."},
+    {"icon": "🌴", "desc": "Reggae lyrics promote peace and love.", "fact": "Rastafarian culture is linked to reggae.", "tip": "Notice the spiritual themes."},
+    {"icon": "🌴", "desc": "Reggae has influenced hip-hop and pop.", "fact": "Dub reggae uses lots of effects.", "tip": "Hear the echo and reverb in dub."},
+    {"icon": "🌴", "desc": "Reggae festivals are held worldwide.", "fact": "Reggae Sumfest is a major festival.", "tip": "Watch a live reggae show."},
+    {"icon": "🌴", "desc": "Reggae is great for relaxing.", "fact": "Toots and the Maytals coined the term 'reggae'.", "tip": "Chill out to a reggae playlist."},
+    {"icon": "🌴", "desc": "Reggae bands use horns and keyboards.", "fact": "Steel Pulse is a famous UK reggae band.", "tip": "Listen for brass in the music."},
+    {"icon": "🌴", "desc": "Reggae is known for its groove.", "fact": "Peter Tosh was a member of The Wailers.", "tip": "Feel the rhythm of the bass."},
+    {"icon": "🌴", "desc": "Reggae inspires positive thinking.", "fact": "Many reggae songs are about freedom.", "tip": "Reflect on the lyrics."},
+    {"icon": "🌴", "desc": "Reggae is enjoyed worldwide.", "fact": "Reggae is a UNESCO cultural heritage.", "tip": "Explore reggae from different countries."}
+  ],
+  "Rock": [
+    {"icon": "🥁", "desc": "Bold, energetic, and rebellious with electric guitars and drums.", "fact": "Rock music shaped youth culture worldwide.", "tip": "Air guitar is encouraged!"},
+    {"icon": "🥁", "desc": "Rock bands often have a lead guitarist.", "fact": "The Beatles revolutionized rock music.", "tip": "Sing along to a classic rock song."},
+    {"icon": "🥁", "desc": "Rock concerts are loud and lively.", "fact": "Queen is known for arena rock anthems.", "tip": "Watch a live rock performance."},
+    {"icon": "🥁", "desc": "Rock has many subgenres: punk, indie, alt, and more.", "fact": "Nirvana brought grunge to the mainstream.", "tip": "Explore different rock subgenres."},
+    {"icon": "🥁", "desc": "Rock lyrics can be rebellious or poetic.", "fact": "Led Zeppelin is a legendary rock band.", "tip": "Listen for powerful guitar riffs."},
+    {"icon": "🥁", "desc": "Rock drums drive the rhythm.", "fact": "Phil Collins is a famous rock drummer.", "tip": "Pay attention to the drum fills."},
+    {"icon": "🥁", "desc": "Rock fashion is iconic.", "fact": "Leather jackets and jeans are classic.", "tip": "Notice the stage outfits at concerts."},
+    {"icon": "🥁", "desc": "Rock festivals are huge events.", "fact": "Woodstock was a historic rock festival.", "tip": "Watch Woodstock documentaries."},
+    {"icon": "🥁", "desc": "Rock is about attitude and energy.", "fact": "AC/DC is known for high-voltage rock.", "tip": "Feel the energy in the music."},
+    {"icon": "🥁", "desc": "Rock is always evolving.", "fact": "Arctic Monkeys are modern rock icons.", "tip": "Discover new rock bands!"}
+  ]
+}
