@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Beatzs</title>
+    <link rel="icon" type="image/png" href="/static/images/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3a1c71',
+                        secondary: '#d76d77',
+                        accent: '#ffaf7b',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'fade-in': 'fadeIn 2s ease-out',
+                        'slide-up': 'slideUp 1s ease-out',
+                        'scale-in': 'scaleIn 0.5s ease-out',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(50px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.9)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .music-note {
+            position: absolute;
+            opacity: 0;
+            animation: floatNote 10s linear infinite;
+        }
+        
+        @keyframes floatNote {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .button-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .button-shine::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(30deg);
+            animation: shine 6s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            20%, 100% { transform: translateX(100%) rotate(30deg); }
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen overflow-hidden">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full bg-black bg-opacity-30 backdrop-blur-sm z-50 px-6 py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-white font-bold text-3xl tracking-wide" style="font-family: 'Amatic SC', cursive, sans-serif; letter-spacing: 2px;">
+                <span class="drop-shadow-lg animate-pulse">Urban Beatzs</span>
+            </div>
+            <div class="flex space-x-6">
+                <a href="/" class="text-white hover:text-gray-300 transition-colors">Home</a>
+                <a href="/about" class="text-white hover:text-gray-300 transition-colors">About Us</a>
+                <a href="/contact" class="text-white hover:text-gray-300 transition-colors">Contact</a>
+                <a href="/index" class="text-white hover:text-gray-300 transition-colors">Explore</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Video Background -->
+    <video autoplay muted loop id="bg-video" class="fixed top-0 left-0 w-full h-full object-cover object-center -z-10">
+        <source src="/static/videos/welcome-bg.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Only Transparent Button (lowered, no container) -->
+    <a href="/index" class="z-10 absolute left-1/2 transform -translate-x-1/2 bottom-32 px-8 py-4 text-lg font-bold text-white bg-transparent border-2 border-white rounded-full hover:bg-white hover:bg-opacity-20 transition-all duration-300">
+        Get Started
+    </a>
+    <!-- No music notes animation -->
+    <script>
+    // No animation JS needed
+    </script>
+    <div id="music-notes"></div>
+    <script>
+    // Animated floating music notes
+    document.addEventListener('DOMContentLoaded', function() {
+        const notes = ['\u266B', '\u266A', '\u266C', '\u2669', '\u266F'];
+        const colors = ['#E5A68A', '#FCEBD6', '#AA6E72', '#734773', '#3E2B59'];
+        const container = document.getElementById('music-notes');
+        for (let i = 0; i < 18; i++) {
+            const note = document.createElement('span');
+            note.textContent = notes[Math.floor(Math.random() * notes.length)];
+            note.className = 'music-note';
+            note.style.left = Math.random() * 100 + 'vw';
+            note.style.fontSize = (Math.random() * 2 + 1.5) + 'rem';
+            note.style.color = colors[Math.floor(Math.random() * colors.length)];
+            note.style.animationDelay = (Math.random() * 8) + 's';
+            container.appendChild(note);
+        }
+    });
+    </script>
+</body>
+</html>

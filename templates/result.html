@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analysis Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+      /* Only for fallback if not present in style.css */
+      .results-details { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+      @media (max-width: 900px) { .results-details { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div class="app-layout">
+    <header class="header">
+        <div class="logo">🔍 Analysis Results</div>
+        <a href="/index" class="back-btn"><span class="back-icon">⬅</span> <span class="back-text">Back to Main</span></a>
+    </header>
+    <div class="results-content results-grid">
+        <aside class="confidence-grid-col">
+            <div class="confidence-scores fun-confidence">
+                <h3>Confidence Scores:</h3>
+                <ul>
+                    {% set class_labels = ["Blues", "Classical", "Country", "Disco", "Hip-Hop", "Jazz", "Metal", "Pop", "Reggae", "Rock"] %}
+                    {% set genre_icons = [
+                        '🎸', '🎻', '🤠', '🕺', '🎤', '🎷', '🤘', '🎹', '🌴', '🥁'
+                    ] %}
+                    {% set genre_colors = [
+                        '#6A4C93', '#FFB86F', '#FF6F61', '#F8E16C', '#2EC4B6', '#3A86FF', '#FF006E', '#8338EC', '#43AA8B', '#FFBE0B'
+                    ] %}
+                    {% for i in range(confidence|length) %}
+                    <li class="confidence-score-item" style="--bar-color: {{ genre_colors[i] }};">
+                        <span class="genre-icon">{{ genre_icons[i] }}</span>
+                        <span class="score-label">{{ class_labels[i] }}</span>
+                        <div class="confidence-bar-outer">
+                            <div class="confidence-bar-animated" style="animation-delay: {{ i * 0.08 }}s; background: var(--bar-color); width: 0%" data-score="{{ (confidence[i] * 100)|round(0, 'floor') }}"></div>
+                            {% if confidence[i] > 0.7 %}
+                                <span class="pulse-note">🎵</span>
+                            {% endif %}
+                        </div>
+                        <span class="score-value">{{ '%.1f'|format(confidence[i]*100) }}%</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </aside>
+        <div class="results-details">
+            <section class="genre-prediction">
+    <h2>🎼 Predicted Genre: <span>{{ genre }}</span></h2>
+    <div class="genre-extra">
+        {% if genre_fact %}
+            <div class="genre-icon-large">{{ genre_fact.icon }}</div>
+            <div class="genre-desc">{{ genre_fact.desc }}</div>
+            {% if genre_fact.fact %}<div class="genre-fact"><b>Did you know?</b> {{ genre_fact.fact }}</div>{% endif %}
+            {% if genre_fact.tip %}<div class="genre-tip"><b>Tip:</b> {{ genre_fact.tip }}</div>{% endif %}
+        {% else %}
+            <div class="genre-icon-large">🎵</div>
+            <div class="genre-desc">A unique musical experience!</div>
+        {% endif %}
+    </div>
+</section>
+            <section class="features-display">
+                <h3>🎚 Extracted Features</h3>
+                <ul class="feature-list">
+                    {% for key, value in features.items() %}
+                        <li class="feature-item">
+                            <div class="feature-name">{{ key.capitalize() }}</div>
+                            <div class="feature-bar">
+                                <div class="feature-bar-fill {% if key in ['energy', 'danceability', 'loudness'] %}{{ key }}{% endif %}" style="width: {{ (value * 100)|round(0, 'floor') }}%"></div>
+                            </div>
+                            <div class="feature-value">{{ value }}</div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+            <section class="recommendation-list">
+                <h3>🎧 Recommended Songs ({{ genre }})</h3>
+                <ol>
+                    {% for rec in recommendations %}
+                        <li class="recommendation-item">
+                            <div class="song-title">{{ rec.song }}</div>
+                            <div class="song-artist">— {{ rec.artist }}</div>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </section>
+        </div>
+    </div>
+    <div class="toast-container" id="toastContainer"></div>
+    <div class="loading-overlay" id="loadingOverlay" style="display:none;">
+        <div class="loading-spinner"></div>
+    </div>
+</div>
+<script>
+function showToast(msg, type) {
+    const toast = document.createElement('div');
+    toast.className = `toast show ${type}`;
+    toast.innerHTML = `<span class='toast-icon'>${type === 'success' ? '✅' : '⚠️'}</span><span class='toast-message'>${msg}</span><button class='toast-close' onclick='this.parentNode.remove()'>×</button>`;
+    document.getElementById('toastContainer').appendChild(toast);
+    setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3500);
+}
+function showLoader(show) {
+    document.getElementById('loadingOverlay').style.display = show ? 'flex' : 'none';
+}
+</script>
+</body>
+</html>

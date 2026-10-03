@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Urban Beatzs</title>
+    <link rel="icon" type="image/png" href="/static/images/favicon.ico">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='navbar.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="/" class="navbar-logo" style="font-family: 'Amatic SC', cursive, sans-serif; font-size: 2.2rem; letter-spacing: 2px; color: #3E2B59; transition: color 0.2s;">Urban Beatzs</a>
+        <div class="navbar-links">
+            <a href="/" class="navbar-link">Home</a>
+            <a href="/about" class="navbar-link">About Us</a>
+            <a href="/contact" class="navbar-link">Contact</a>
+            <a href="/index" class="navbar-link">Explore</a>
+        </div>
+        <button class="navbar-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+<div class="app-layout" style="margin-top: 80px;">
+    <!-- Header -->
+    <header class="header">
+        
+        <form id="download-form" class="search-bar">
+            <input type="text" id="searchQuery" name="query" placeholder="Search & Download Music...">
+            <button type="submit" id="downloadBtn">
+                <span class="btn-text">Download</span>
+                <span class="btn-loading" style="display: none;">
+                    <span class="spinner-dot"></span>
+                    <span class="spinner-dot"></span>
+                    <span class="spinner-dot"></span>
+                </span>
+            </button>
+        </form>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Song Library -->
+        <aside class="song-library">
+            <div class="song-library-header">
+                <h2>🎧 Your Library</h2>
+                <div class="song-count">{{ song_files|length }} songs</div>
+            </div>
+            <div style="margin: 0 0 1rem 0; width: 100%; display: flex; justify-content: center;">
+                <input type="text" id="songSearchInput" placeholder="Search your songs..." style="width: 90%; max-width: 320px; padding: 0.55rem 1.1rem; border-radius: 24px; border: 1px solid #E5A68A; background: #FCEBD6; font-family: 'Amatic SC', cursive, sans-serif; font-size: 1.2rem; color: #3E2B59; outline: none; box-shadow: 0 2px 8px rgba(170,110,114,0.06); transition: border 0.2s;" onfocus="this.style.borderColor='#AA6E72'" onblur="this.style.borderColor='#E5A68A'">
+            </div>
+            <ul class="song-list">
+                {% for song in song_files %}
+                <li class="song-item" data-filename="{{ song.name|e }}" data-album-art="{{ song.album_art }}">
+                    <div class="song-item-inner">
+                        <div class="song-thumbnail">
+                            <img src="{{ song.album_art }}" alt="Album Art">
+                        </div>
+                        <div class="song-details">
+                            <div class="song-name">{{ song.name|replace('.mp3', '')|replace('.wav', '')|replace('.flac', '') }}</div>
+                            <div class="song-format">{{ song.name.split('.')[-1].upper() }}</div>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </aside>
+
+        <!-- Player & Action Panel -->
+        <section class="player-section opacity-0 translate-y-4">
+            <!-- Spotify-like Player -->
+            <div class="spotify-player">
+                <div class="player-album-art">
+                    <img id="currentAlbumArt" src="/static/images/album-art/gray.svg" alt="Album Art">
+                </div>
+                <div class="player-content">
+                    <div class="player-info">
+                        <h3 id="nowPlaying">Select a song to play</h3>
+                        <p id="playerSubtitle" class="player-subtitle" style="font-family: 'Amatic SC', cursive, sans-serif; color: #AA6E72; font-size: 1.3rem;">Powered by Urban Beatzs</p>
+                    </div>
+                    
+                    <div class="player-controls">
+                        <button class="control-button" id="prevButton" disabled>
+                            <i class="fas fa-step-backward"></i>
+                        </button>
+                        <button class="control-button control-main" id="playPauseButton" disabled>
+                            <i class="fas fa-play" id="playPauseIcon" style="color:#fff;text-shadow:0 1px 8px #3E2B59,0 0px 2px #AA6E72;font-size:1.5rem;"></i>
+                        </button>
+                        <button class="control-button" id="nextButton" disabled>
+                            <i class="fas fa-step-forward"></i>
+                        </button>
+                        <!-- Volume Control -->
+                        <div class="flex items-center ml-4" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                            <i id="volumeIcon" class="fas fa-volume-up" style="color: #734773;"></i>
+                            <input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="1" style="width: 80px; accent-color: #AA6E72;">
+                        </div>
+                        <!-- Minimalistic 5-Bar Equalizer Visualizer -->
+                        <div class="visualizer-container" style="width: 180px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                            <canvas id="modernVisualizer" width="180" height="48" style="width:180px;height:48px;background:transparent;display:block;"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="player-progress">
+                        <span id="currentTime" class="time">0:00</span>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill" id="progressBarFill"></div>
+                        </div>
+                        <span id="duration" class="time">0:00</span>
+                    </div>
+                    
+                    <audio id="audioPlayer" style="width:0;height:0;position:absolute;left:-9999px;">
+    Your browser does not support the audio element.
+</audio>
+                </div>
+            </div>
+            
+            <div class="action-panel">
+                <form id="analyze-form" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="filename" id="selectedFile">
+                    <button type="submit" class="analyze-btn">
+                        <i class="fas fa-chart-bar"></i>
+                        Analyze Song
+                    </button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-container" id="toastContainer"></div>
+    <!-- Loader -->
+    <div class="loading-overlay" id="loadingOverlay" style="display:none;">
+        <div class="loading-spinner"></div>
+    </div>
+</div>
+<script>
+// Song selection and playback
+let audioPlayer = document.getElementById("audioPlayer");
+let playPauseButton = document.getElementById("playPauseButton");
+let playPauseIcon = document.getElementById("playPauseIcon");
+let progressBarFill = document.getElementById("progressBarFill");
+let currentTimeDisplay = document.getElementById("currentTime");
+let durationDisplay = document.getElementById("duration");
+let prevButton = document.getElementById("prevButton");
+let nextButton = document.getElementById("nextButton");
+let currentSongIndex = -1;
+let songItems = document.querySelectorAll(".song-item");
+
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+}
+
+function updateProgressBar() {
+    if (audioPlayer.duration) {
+        const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+        progressBarFill.style.width = `${progress}%`;
+        currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime);
+        durationDisplay.textContent = formatTime(audioPlayer.duration);
+    }
+}
+
+function setNowPlaying(name, albumArt) {
+    document.getElementById("nowPlaying").textContent = name.replace('.mp3', '').replace('.wav', '').replace('.flac', '');
+    document.getElementById("playerSubtitle").textContent = name.split('.').pop().toUpperCase();
+    document.getElementById("currentAlbumArt").src = albumArt;
+    
+    // Enable control buttons
+    playPauseButton.disabled = false;
+    
+    // Enable prev/next buttons if there are multiple songs
+    if (songItems.length > 1) {
+        prevButton.disabled = false;
+        nextButton.disabled = false;
+    }
+}
+
+function playSong(index) {
+    if (index < 0 || index >= songItems.length) return;
+    
+    currentSongIndex = index;
+    const item = songItems[index];
+    const filename = item.getAttribute("data-filename");
+    const albumArt = item.getAttribute("data-album-art");
+    
+    // Remove all sources and set src directly on <audio>
+    audioPlayer.pause();
+    audioPlayer.removeAttribute('src');
+    audioPlayer.src = `/uploads/${encodeURIComponent(filename)}`;
+    audioPlayer.load();
+    audioPlayer.currentTime = 0;
+    audioPlayer.play().then(() => {
+        playPauseIcon.className = "fas fa-pause";
+        playPauseIcon.style.color = "#fff";
+        playPauseIcon.style.textShadow = "0 1px 8px #3E2B59,0 0px 2px #AA6E72";
+        playPauseIcon.style.fontSize = "1.5rem";
+    }).catch(function(e) {
+        // Autoplay might be blocked; show play icon
+        playPauseIcon.className = "fas fa-play";
+    });
+    var selectedFileInput = document.getElementById('selectedFile');
+    if (selectedFileInput) selectedFileInput.value = filename;
+    setNowPlaying(filename, albumArt);
+    updateProgressBar();
+    
+    // Update play/pause icon
+    playPauseIcon.className = "fas fa-pause";
+    playPauseIcon.style.color = "#fff";
+    playPauseIcon.style.textShadow = "0 1px 8px #3E2B59,0 0px 2px #AA6E72";
+    playPauseIcon.style.fontSize = "1.5rem";
+    
+    // Update active song in list
+    document.querySelectorAll('.song-item').forEach(el => el.classList.remove('active'));
+    item.classList.add('active');
+}
+
+// Attach click listeners to songs
+songItems.forEach((item, index) => {
+    item.addEventListener("click", () => {
+        playSong(index);
+    });
+});
+
+// Play/Pause button
+playPauseButton.addEventListener("click", () => {
+    if (audioPlayer.paused) {
+        audioPlayer.play();
+        playPauseIcon.className = "fas fa-pause";
+        playPauseIcon.style.color = "#fff";
+        playPauseIcon.style.textShadow = "0 1px 8px #3E2B59,0 0px 2px #AA6E72";
+        playPauseIcon.style.fontSize = "1.5rem";
+    } else {
+        audioPlayer.pause();
+        playPauseIcon.className = "fas fa-play";
+    }
+});
+
+// Previous button
+prevButton.addEventListener("click", () => {
+    if (currentSongIndex > 0) {
+        playSong(currentSongIndex - 1);
+    } else {
+        // Wrap around to the last song
+        playSong(songItems.length - 1);
+    }
+});
+
+// Next button
+nextButton.addEventListener("click", () => {
+    if (currentSongIndex < songItems.length - 1) {
+        playSong(currentSongIndex + 1);
+    } else {
+        // Wrap around to the first song
+        playSong(0);
+    }
+});
+
+// Update progress bar as audio plays
+audioPlayer.addEventListener("timeupdate", updateProgressBar);
+
+// Volume Control
+const volumeSlider = document.getElementById('volumeSlider');
+const volumeIcon = document.getElementById('volumeIcon');
+if (volumeSlider && audioPlayer && volumeIcon) {
+    volumeSlider.addEventListener('input', function() {
+        audioPlayer.volume = parseFloat(this.value);
+        if (audioPlayer.volume === 0) {
+            volumeIcon.className = 'fas fa-volume-mute';
+        } else if (audioPlayer.volume < 0.5) {
+            volumeIcon.className = 'fas fa-volume-down';
+        } else {
+            volumeIcon.className = 'fas fa-volume-up';
+        }
+    });
+    // Set initial volume
+    audioPlayer.volume = parseFloat(volumeSlider.value);
+}
+
+// Modern Audio Visualizer
+const modernVisualizer = document.getElementById('modernVisualizer');
+let audioCtx, analyser, srcNode, animationId;
+if (modernVisualizer && window.AudioContext) {
+    const ctx = modernVisualizer.getContext('2d');
+    const WIDTH = modernVisualizer.width;
+    const HEIGHT = modernVisualizer.height;
+    function setupAudioNodes() {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = audioCtx.createAnalyser();
+            analyser.fftSize = 64;
+        }
+        // Only create srcNode if not already created for this audioPlayer
+        if (!srcNode || srcNode.mediaElement !== audioPlayer) {
+            if (srcNode) {
+                try { srcNode.disconnect(); } catch (e) {}
+                srcNode = null;
+            }
+            srcNode = audioCtx.createMediaElementSource(audioPlayer);
+            srcNode.connect(analyser);
+            analyser.connect(audioCtx.destination);
+        }
+    }
+    function drawVisualizer() {
+        if (!analyser) return;
+        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+        analyser.getByteFrequencyData(dataArray);
+        const barWidth = WIDTH / bufferLength;
+        for (let i = 0; i < bufferLength; i++) {
+            const barHeight = (dataArray[i] / 255) * HEIGHT;
+            const hue = 280 + (i * 60 / bufferLength); // purple-pink gradient
+            ctx.fillStyle = `hsl(${hue}, 60%, 70%)`;
+            ctx.fillRect(i * barWidth, HEIGHT - barHeight, barWidth - 2, barHeight);
+            ctx.shadowColor = '#3E2B59';
+            ctx.shadowBlur = 8;
+        }
+        animationId = requestAnimationFrame(drawVisualizer);
+    }
+    function startVisualizer() {
+        setupAudioNodes();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        if (animationId) cancelAnimationFrame(animationId);
+        drawVisualizer();
+    }
+    function stopVisualizer() {
+        if (animationId) cancelAnimationFrame(animationId);
+        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+    }
+    audioPlayer.addEventListener('play', startVisualizer);
+    audioPlayer.addEventListener('pause', stopVisualizer);
+    audioPlayer.addEventListener('ended', stopVisualizer);
+}
+
+// When audio ends, play next song
+audioPlayer.addEventListener("ended", () => {
+    if (currentSongIndex < songItems.length - 1) {
+        playSong(currentSongIndex + 1);
+    } else {
+        // Reset to first song or stop
+        playPauseIcon.className = "fas fa-play";
+    }
+});
+
+// Click on progress bar to seek
+document.querySelector(".progress-bar").addEventListener("click", (e) => {
+    if (!audioPlayer.src) return;
+    
+    const progressBar = e.currentTarget;
+    const clickPosition = e.clientX - progressBar.getBoundingClientRect().left;
+    const progressBarWidth = progressBar.offsetWidth;
+    const seekPercentage = clickPosition / progressBarWidth;
+    
+    audioPlayer.currentTime = seekPercentage * audioPlayer.duration;
+});
+
+// Analyze form validation
+document.getElementById("analyze-form").addEventListener("submit", function(e) {
+    if (!document.getElementById("selectedFile").value) {
+        e.preventDefault();
+        showToast("🎵 Please select a song to analyze.", "error");
+    }
+});
+
+// Download form
+document.getElementById("download-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const query = document.getElementById("searchQuery").value;
+    
+    // Show loading indicator in button instead of full screen
+    const downloadBtn = document.getElementById("downloadBtn");
+    const btnText = downloadBtn.querySelector(".btn-text");
+    const btnLoading = downloadBtn.querySelector(".btn-loading");
+    
+    btnText.style.display = "none";
+    btnLoading.style.display = "flex";
+    downloadBtn.disabled = true;
+    
+    fetch("/download", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: query })
+    })
+    .then(res => res.json())
+    .then(data => {
+        // Reset button state
+        btnText.style.display = "block";
+        btnLoading.style.display = "none";
+        downloadBtn.disabled = false;
+        
+        showToast(data.message, "success");
+         // Wait a little for the downloaded file to be available
+    setTimeout(() => {
+        window.location.href = "/index";
+    }, 1500);
+       
+    })
+    .catch(err => {
+        // Reset button state
+        btnText.style.display = "block";
+        btnLoading.style.display = "none";
+        downloadBtn.disabled = false;
+        
+        showToast("❌ Error downloading song.", "error");
+    });
+});
+
+// Toast and Loader functions
+function showToast(msg, type) {
+    const toast = document.createElement('div');
+    toast.className = `toast show ${type}`;
+    toast.innerHTML = `<span class='toast-icon'>${type === 'success' ? '✅' : '⚠️'}</span><span class='toast-message'>${msg}</span><button class='toast-close' onclick='this.parentNode.remove()'>×</button>`;
+    document.getElementById('toastContainer').appendChild(toast);
+    setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3500);
+}
+
+function showLoader(show) {
+    document.getElementById('loadingOverlay').style.display = show ? 'flex' : 'none';
+}
+</script>
+<script>
+// Song search bar filter
+(function() {
+    const searchInput = document.getElementById('songSearchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            const query = this.value.trim().toLowerCase();
+            const songItems = document.querySelectorAll('.song-item');
+            songItems.forEach(item => {
+                const nameDiv = item.querySelector('.song-name');
+                if (nameDiv && nameDiv.textContent.toLowerCase().includes(query)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    }
+})();
+</script>
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
